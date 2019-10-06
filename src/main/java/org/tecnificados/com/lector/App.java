@@ -18,9 +18,14 @@ public class App
         try {
         	readedLines = FileUtils.readLines(new File("fichero.txt"),"utf-8");
 			System.out.println("Lineas: "+readedLines.size());
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+        for (String actual:readedLines)
+        {
+			System.out.println("\t"+actual);
+        }
     }
 }
