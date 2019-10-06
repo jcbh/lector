@@ -13,37 +13,34 @@ import org.apache.commons.io.FileUtils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.tecnificados.com.lector.util.Messages;
 
 /**
  * Lector de ficheros linea a linea
  */
 public class App 
 {
-	private static final String UTF_8 = "utf-8";
 
-	private static final String CONF_PROPERTIES = "conf.properties"; 
-
-	private static final String PATH_TO_FILE = "pathToFile"; 
 
 	private static final Logger log = LoggerFactory.getLogger(App.class);
 	
-	private static String filePath="fichero.txt"; 
+	
 	
 	private static void configuration() {
 		Properties prop = new Properties();
     	try 
     	{
-    		InputStream input = new FileInputStream(CONF_PROPERTIES);
+    		InputStream input = new FileInputStream(Constant.CONF_PROPERTIES);
     		prop.load(input);    	         	    
     	} 
     	catch (IOException ex) {
     	    log.error(Messages.getString("App.3"),ex); 
     	}
     	
-    	if (prop.getProperty(PATH_TO_FILE)!=null) {
-    		filePath=prop.getProperty(PATH_TO_FILE);
+    	if (prop.getProperty(Constant.PATH_TO_FILE)!=null) {
+    		Constant.filePath=prop.getProperty(Constant.PATH_TO_FILE);
     	}else {
-    		log.info(PATH_TO_FILE+Messages.getString("App.4")+CONF_PROPERTIES); 
+    		log.info(Constant.PATH_TO_FILE+Messages.getString("App.4")+Constant.CONF_PROPERTIES); 
     	}
 		
 	}
@@ -59,7 +56,7 @@ public class App
     	
     	List<String> readedLines = new ArrayList<String>();
         try {
-        	readedLines = FileUtils.readLines(new File(filePath),UTF_8);
+        	readedLines = FileUtils.readLines(new File(Constant.filePath),Constant.UTF_8);
         	log.info(Messages.getString("App.7")+readedLines.size()); 
 			
 		} catch (IOException e) {
