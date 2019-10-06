@@ -7,25 +7,31 @@ import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Lector de ficheros linea a linea
  */
 public class App 
 {
+	private static final Logger log = LoggerFactory.getLogger(App.class);
+	
     public static void main( String[] args )
     {
+    	log.info("Inicio");
     	List<String> readedLines = new ArrayList<String>();
         try {
         	readedLines = FileUtils.readLines(new File("fichero.txt"),"utf-8");
-			System.out.println("Lineas: "+readedLines.size());
+        	log.info("Lineas: "+readedLines.size());
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error("Error reading file",e);
 		}
         for (String actual:readedLines)
         {
-			System.out.println("\t"+actual);
+			log.info(actual);
         }
+        log.info("Fin");
     }
 }
